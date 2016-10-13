@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnockKnock.Web", "KnockKnock.Web\KnockKnock.Web.csproj", "{E1C08915-B5C6-4B18-AFE9-2F0167BB1B38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnockKnock.Web.Tests", "KnockKnock.Web.Tests\KnockKnock.Web.Tests.csproj", "{FA72B3B2-3D6E-42EF-AAA3-A3D0E5817D3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1C08915-B5C6-4B18-AFE9-2F0167BB1B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C08915-B5C6-4B18-AFE9-2F0167BB1B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C08915-B5C6-4B18-AFE9-2F0167BB1B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C08915-B5C6-4B18-AFE9-2F0167BB1B38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA72B3B2-3D6E-42EF-AAA3-A3D0E5817D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA72B3B2-3D6E-42EF-AAA3-A3D0E5817D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA72B3B2-3D6E-42EF-AAA3-A3D0E5817D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA72B3B2-3D6E-42EF-AAA3-A3D0E5817D3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
