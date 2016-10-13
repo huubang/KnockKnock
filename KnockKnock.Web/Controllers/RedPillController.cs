@@ -18,11 +18,34 @@ namespace KnockKnock.Web.Controllers
             redPillService = new RedPillService();
         }
 
+        [HttpGet]
         [Route("token")]
         public string GetToken()
         {
             return redPillService.GetToken();
         }
+
+        [HttpGet]
+        [Route("fibonacci/{number:long}")]
+        public long GetFibonacci(long number)
+        {
+            return redPillService.GetFibonacci(number);
+        }
+
+        [HttpGet]
+        [Route("reverse-words")]
+        public string ReverseWords(string sentence)
+        {
+            return redPillService.ReverseWords(sentence);
+        }
+
+        [HttpGet]
+        [Route("triangle-type")]
+        public string GetTriangleType(int a, int b, int c)
+        {
+            return redPillService.GetTriangleType(a, b, c).ToString();
+        }
+
         // GET api/values
         public IEnumerable<string> Get()
         {
