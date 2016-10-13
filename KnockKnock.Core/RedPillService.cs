@@ -18,6 +18,16 @@ namespace KnockKnock.Core
 
         public long GetFibonacci(long number)
         {
+            if (number == 0)
+            {
+                return 0;
+            }
+
+            if (number < 0)
+            {
+                throw new ApplicationException("Invalid number for Fibonacci");
+            }
+
             var numbers = GetLongRange(1, number);
             var fibo = numbers.Aggregate((f, s) => f*s);
 
