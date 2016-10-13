@@ -8,15 +8,15 @@ using KnockKnock.Core;
 
 namespace KnockKnock.Web.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RedPillWcfService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select RedPillWcfService.svc or RedPillWcfService.svc.cs at the Solution Explorer and start debugging.
-    public class RedPillWcfService : IRedPillWcfService
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RedPill" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select RedPill.svc or RedPill.svc.cs at the Solution Explorer and start debugging.
+    public class RedPill : IRedPill
     {
-        private IRedPillService redPillService;
+        private readonly IRedPillService redPillService;
 
-        public RedPillWcfService()
+        public RedPill()
         {
-            redPillService = new RedPillService();            
+            redPillService = new RedPillService();
         }
         public Guid WhatIsYourToken()
         {

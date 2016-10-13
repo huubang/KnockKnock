@@ -8,9 +8,9 @@ using KnockKnock.Core;
 
 namespace KnockKnock.Web.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IRedPillWcfService" in both code and config file together.
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IRedPill" in both code and config file together.
     [ServiceContract]
-    public interface IRedPillWcfService
+    public interface IRedPill
     {
         [OperationContract]
         Guid WhatIsYourToken();
