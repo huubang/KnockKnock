@@ -4,16 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using KnockKnock.Core;
 
 namespace KnockKnock.Web.Controllers
 {
-    [RoutePrefix("red-pill")]
+    [RoutePrefix("api/red-pill")]
     public class RedPillController : ApiController
     {
+        private readonly IRedPillService redPillService;
+
+        public RedPillController()
+        {
+            redPillService = new RedPillService();
+        }
+
         [Route("token")]
         public string GetToken()
         {
-            return "97c72c91-a9bf-40ed-9788-df359c6bedfa";
+            return redPillService.GetToken();
         }
         // GET api/values
         public IEnumerable<string> Get()
