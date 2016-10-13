@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KnockKnock.Web;
 using KnockKnock.Web.Controllers;
@@ -14,68 +15,61 @@ namespace KnockKnock.Web.Tests.Controllers
     public class RedPillControllerTest
     {
         [TestMethod]
-        public void Get()
+        public void GetToken()
         {
             // Arrange
             RedPillController controller = new RedPillController();
 
             // Act
-            IEnumerable<string> result = controller.Get();
+            string result = controller.GetToken();
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
+            result.Should().NotBeEmpty();
         }
 
         [TestMethod]
-        public void GetById()
+        public void GetFibonacci()
         {
             // Arrange
             RedPillController controller = new RedPillController();
 
             // Act
-            string result = controller.Get(5);
+            long result = controller.GetFibonacci(5);
 
             // Assert
-            Assert.AreEqual("value", result);
+            result.ShouldBeEquivalentTo(120);
         }
 
         [TestMethod]
-        public void Post()
+        public void ReverseWords()
         {
             // Arrange
             RedPillController controller = new RedPillController();
 
             // Act
-            controller.Post("value");
+            string result = controller.ReverseWords("Knock Knock Readify");
 
             // Assert
+            result.ShouldBeEquivalentTo("kconK kconK yfidaeR");
         }
 
         [TestMethod]
-        public void Put()
+        public void GetTriangleType()
         {
             // Arrange
             RedPillController controller = new RedPillController();
 
             // Act
-            controller.Put(5, "value");
+            string scalene = controller.GetTriangleType(3, 4, 5);
+            string isosceles = controller.GetTriangleType(5, 3, 3);
+            string equilateral = controller.GetTriangleType(3, 3, 3);
+            string invalid = controller.GetTriangleType(5, 3, 8);
 
             // Assert
-        }
-
-        [TestMethod]
-        public void Delete()
-        {
-            // Arrange
-            RedPillController controller = new RedPillController();
-
-            // Act
-            controller.Delete(5);
-
-            // Assert
+            scalene.ShouldBeEquivalentTo("Scalene");
+            isosceles.ShouldBeEquivalentTo("Isosceles");
+            equilateral.ShouldBeEquivalentTo("Equilateral");
+            invalid.ShouldBeEquivalentTo("Invalid");
         }
     }
 }
