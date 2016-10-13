@@ -11,3 +11,5 @@ This is a creative implementation of the following web service https://knockknoc
 - Create API documentation using Swagger
 - Write Unit Tests
 - Use WebAPI for web services
+- Use Azure cloud hosting to manage and host Web API projects
+- Practice source control using GitHub
