@@ -25,7 +25,7 @@ namespace KnockKnock.Core
 
             if (number < 0)
             {
-                throw new ApplicationException("Invalid number for Fibonacci");
+                throw new ArgumentOutOfRangeException("Invalid number for Fibonacci");
             }
 
             var numbers = GetLongRange(1, number);
@@ -36,6 +36,10 @@ namespace KnockKnock.Core
 
         public string ReverseWords(string sentence)
         {
+            if (sentence == null)
+            {
+                throw new ArgumentNullException("Input is null");
+            }
             var reversedSentence = string.Join(" ", sentence.Split(' ').Select(w => new string(w.Reverse().ToArray())));
             return reversedSentence;
         }

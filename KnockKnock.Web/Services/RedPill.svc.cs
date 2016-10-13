@@ -30,7 +30,20 @@ namespace KnockKnock.Web.Services
 
         public TriangleType WhatShapeIsThis(int a, int b, int c)
         {
-            return redPillService.GetTriangleType(a, b, c);
+            var result = redPillService.GetTriangleType(a, b, c);
+            switch (result)
+            {
+                case Core.TriangleType.Equilateral:
+                    return TriangleType.Equilateral;
+                case Core.TriangleType.Isosceles:
+                    return TriangleType.Isosceles;
+                case Core.TriangleType.Scalene:
+                    return TriangleType.Scalene;
+                case Core.TriangleType.Invalid:
+                    return TriangleType.Error;
+                default:
+                    return TriangleType.Error;
+            }
         }
 
         public string ReverseWords(string s)
