@@ -32,7 +32,9 @@ namespace KnockKnock.Web
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "KnockKnock.Web");
+                        c.SingleApiVersion("v1", "KnockKnock.Web RedPill API")
+                        .Description("A creative implementation based on reference web service https://knockknock.readify.net/RedPill.svc")
+                        .Contact(cc => cc.Name("Bang Le").Url("https://github.com/huubang/KnockKnock").Email("mrhuubang@gmail.com"));
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be
@@ -97,7 +99,7 @@ namespace KnockKnock.Web
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
+                        c.IncludeXmlComments(GetXmlCommentsPath());
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
@@ -241,6 +243,11 @@ namespace KnockKnock.Web
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
                     });
+        }
+
+        private static string GetXmlCommentsPath()
+        {
+            return $@"{System.AppDomain.CurrentDomain.BaseDirectory}\bin\KnockKnock.Web.XML";
         }
     }
 }

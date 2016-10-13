@@ -18,8 +18,8 @@ namespace KnockKnock.Core
 
         public long GetFibonacci(long number)
         {
-            IEnumerable<int> numbers = Enumerable.Range(1, (int) number);
-            int fibo = numbers.Aggregate((f, s) => f*s);
+            var numbers = GetLongRange(1, number);
+            var fibo = numbers.Aggregate((f, s) => f*s);
 
             return fibo;
         }
@@ -53,6 +53,14 @@ namespace KnockKnock.Core
             }
 
             return TriangleType.Scalene;
+        }
+
+        private IEnumerable<long> GetLongRange(long source, long length)
+        {
+            for (var i = source; i <= length; i++)
+            {
+                yield return i;
+            }
         }
     }
 
