@@ -7,9 +7,14 @@ using System.Web.Http;
 
 namespace KnockKnock.Web.Controllers
 {
-    [Authorize]
-    public class ValuesController : ApiController
+    [RoutePrefix("red-pill")]
+    public class RedPillController : ApiController
     {
+        [Route("token")]
+        public string GetToken()
+        {
+            return "97c72c91-a9bf-40ed-9788-df359c6bedfa";
+        }
         // GET api/values
         public IEnumerable<string> Get()
         {

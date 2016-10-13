@@ -11,13 +11,13 @@ using KnockKnock.Web.Controllers;
 namespace KnockKnock.Web.Tests.Controllers
 {
     [TestClass]
-    public class ValuesControllerTest
+    public class RedPillControllerTest
     {
         [TestMethod]
         public void Get()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            RedPillController controller = new RedPillController();
 
             // Act
             IEnumerable<string> result = controller.Get();
@@ -33,7 +33,7 @@ namespace KnockKnock.Web.Tests.Controllers
         public void GetById()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            RedPillController controller = new RedPillController();
 
             // Act
             string result = controller.Get(5);
@@ -46,7 +46,7 @@ namespace KnockKnock.Web.Tests.Controllers
         public void Post()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            RedPillController controller = new RedPillController();
 
             // Act
             controller.Post("value");
@@ -58,7 +58,7 @@ namespace KnockKnock.Web.Tests.Controllers
         public void Put()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            RedPillController controller = new RedPillController();
 
             // Act
             controller.Put(5, "value");
@@ -70,7 +70,7 @@ namespace KnockKnock.Web.Tests.Controllers
         public void Delete()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            RedPillController controller = new RedPillController();
 
             // Act
             controller.Delete(5);
