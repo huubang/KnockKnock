@@ -49,19 +49,20 @@ namespace KnockKnock.Core
                 throw new ArgumentOutOfRangeException(nameof(number), $"Value cannot be less than {-threshold}, since the result will cause a 64-bit integer overflow.");
             }
 
-            var key = string.Format("FibonacciNumber{0}", number);
+            var key = $"FibonacciNumber{number}";
             var cacheItem = MemoryCache.Default.GetCacheItem(key);
 
             long result;
 
             if (cacheItem != null)
             {
-                result = (long)cacheItem.Value;
+                result = (long) cacheItem.Value;
             }
             else
             {
                 result = CalculateBinetFormula(number);
-                MemoryCache.Default.Add(new CacheItem(key, result), new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromHours(6) });
+                MemoryCache.Default.Add(new CacheItem(key, result),
+                    new CacheItemPolicy() {SlidingExpiration = TimeSpan.FromHours(6)});
             }
 
             return result;
@@ -75,7 +76,7 @@ namespace KnockKnock.Core
 
             var roundedResult = Math.Round(result);
 
-            return (long)roundedResult;
+            return (long) roundedResult;
         }
 
 
@@ -88,7 +89,7 @@ namespace KnockKnock.Core
             var key = $"ReverseWords{sentence.GetHashCode()}";
             var cacheItem = MemoryCache.Default.GetCacheItem(key);
 
-            string result = string.Empty;
+            string result;
 
             if (cacheItem != null)
             {
