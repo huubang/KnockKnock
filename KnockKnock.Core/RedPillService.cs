@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace KnockKnock.Core
             return Token;
         }
 
-        public long GetFibonacci(long number)
+        public long GetFibonacciLinq(long number)
         {
             if (number == 0)
             {
@@ -34,14 +35,73 @@ namespace KnockKnock.Core
             return fibo;
         }
 
+        public long GetFibonacci(long number)
+        {
+            var threshold = 92;
+
+            if (number > threshold)
+            {
+                throw new ArgumentOutOfRangeException(nameof(number), $"Value cannot be greater than {threshold}, since the result will cause a 64-bit integer overflow.");
+            }
+
+            if (number < -threshold)
+            {
+                throw new ArgumentOutOfRangeException(nameof(number), $"Value cannot be less than {-threshold}, since the result will cause a 64-bit integer overflow.");
+            }
+
+            var key = string.Format("FibonacciNumber{0}", number);
+            var cacheItem = MemoryCache.Default.GetCacheItem(key);
+
+            long result;
+
+            if (cacheItem != null)
+            {
+                result = (long)cacheItem.Value;
+            }
+            else
+            {
+                result = CalculateBinetFormula(number);
+                MemoryCache.Default.Add(new CacheItem(key, result), new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromHours(6) });
+            }
+
+            return result;
+        }
+
+        private long CalculateBinetFormula(long n)
+        {
+            var numerator = Math.Pow((1.0 + Math.Sqrt(5.0)), n) - Math.Pow((1.0 - Math.Sqrt(5.0)), n);
+            var denominator = Math.Pow(2.0, n) * Math.Sqrt(5.0);
+            var result = numerator / denominator;
+
+            var roundedResult = Math.Round(result);
+
+            return (long)roundedResult;
+        }
+
+
         public string ReverseWords(string sentence)
         {
             if (sentence == null)
             {
                 throw new ArgumentNullException("Input is null");
             }
-            var reversedSentence = string.Join(" ", sentence.Split(' ').Select(w => new string(w.Reverse().ToArray())));
-            return reversedSentence;
+            var key = $"ReverseWords{sentence.GetHashCode()}";
+            var cacheItem = MemoryCache.Default.GetCacheItem(key);
+
+            string result = string.Empty;
+
+            if (cacheItem != null)
+            {
+                result = (string)cacheItem.Value;
+            }
+            else
+            {
+                result = string.Join(" ", sentence.Split(' ').Select(w => new string(w.Reverse().ToArray())));
+
+                MemoryCache.Default.Add(new CacheItem(key, result), new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromHours(6) });
+            }
+
+            return result;
         }
 
         public TriangleType GetTriangleType(int a, int b, int c)

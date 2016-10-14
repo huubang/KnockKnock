@@ -34,10 +34,10 @@ namespace KnockKnock.Web.Tests.Controllers
             RedPillController controller = new RedPillController();
 
             // Act
-            long result = controller.GetFibonacci(5);
+            long result = controller.GetFibonacci(6);
 
             // Assert
-            result.ShouldBeEquivalentTo(120);
+            result.ShouldBeEquivalentTo(8);
         }
 
         [TestMethod]
