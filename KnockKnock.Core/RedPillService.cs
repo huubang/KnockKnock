@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KnockKnock.Core
 {
@@ -26,7 +23,7 @@ namespace KnockKnock.Core
 
             if (number < 0)
             {
-                throw new ArgumentOutOfRangeException("Invalid number for Fibonacci");
+                throw new ArgumentOutOfRangeException(nameof(number), "Invalid number for Fibonacci");
             }
 
             var numbers = GetLongRange(1, number);
@@ -84,7 +81,7 @@ namespace KnockKnock.Core
         {
             if (sentence == null)
             {
-                throw new ArgumentNullException("Input is null");
+                throw new ArgumentNullException(nameof(sentence), "Input is null");
             }
             var key = $"ReverseWords{sentence.GetHashCode()}";
             var cacheItem = MemoryCache.Default.GetCacheItem(key);
@@ -93,13 +90,14 @@ namespace KnockKnock.Core
 
             if (cacheItem != null)
             {
-                result = (string)cacheItem.Value;
+                result = (string) cacheItem.Value;
             }
             else
             {
                 result = string.Join(" ", sentence.Split(' ').Select(w => new string(w.Reverse().ToArray())));
 
-                MemoryCache.Default.Add(new CacheItem(key, result), new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromHours(6) });
+                MemoryCache.Default.Add(new CacheItem(key, result),
+                    new CacheItemPolicy {SlidingExpiration = TimeSpan.FromHours(6)});
             }
 
             return result;
